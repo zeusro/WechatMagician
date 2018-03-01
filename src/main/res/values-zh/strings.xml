@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">微信巫师</string>
-    <string name="app_desc">让你玩转微信聊天与朋友圈</string>
-    <string name="view_about_project_github">项目源码 Gh0u1L5/WechatMagician</string>
-    <string name="view_about_project_github_url">https://github.com/Gh0u1L5/WechatMagician</string>
+    <string name="app_name">微信巫师·改</string>
+    <string name="app_desc">微信巫师的平行版本,加入了自己的一些想法</string>
+    <string name="view_about_project_github">项目源码 Zeusro/WechatMagician</string>
+    <string name="view_about_project_github_url">https://github.com/Zeusro/WechatMagician</string>
 
     <string name="status">运行状态</string>
     <string name="settings">插件设置</string>
@@ -24,6 +24,7 @@
     <string name="prompt_alipay_not_found">未发现支付宝手机客户端</string>
     <string name="prompt_need_reboot">重启后生效</string>
     <string name="prompt_wait">请稍候片刻……</string>
+    <string name="prompt_give_me_money">听说你要给我打钱,我的内心是激动的...</string>
     <string name="prompt_load_component_status_failed">组件状态检查失败</string>
     <string name="pref_description_settings">以下选项若无明确说明，均会在修改后即时生效。如果没有生效的话，重启大概也救不了你。</string>
     <string name="pref_warning_developer">以下调试选项会显著拖慢微信运行速度，请在开发者指导下选择性开启，修改后重启生效。</string>
@@ -56,7 +57,7 @@
 
     <string name="pref_category_interface">用户界面</string>
     <string name="pref_toggle_hide_icon">隐藏启动图标</string>
-    <string name="pref_option_module_language">显示语言</string>
+    <string name="pref_option_module_language">显示语言/language</string>
     <string-array name="pref_option_module_language_entries">
         <item>中文</item>
         <item>英文</item>
@@ -75,7 +76,6 @@
     <string name="pref_text_select_photos_limit">自定义发送图片上限</string>
 
     <string name="pref_category_sns">朋友圈</string>
-    <string name="pref_toggle_sns_adblock">启用朋友圈广告屏蔽</string>
     <string name="pref_toggle_prevent_moment_delete">启用动态防删除</string>
     <string name="pref_toggle_prevent_comment_delete">启用评论防删除</string>
     <string name="pref_toggle_keyword_blacklist">启用关键字黑名单</string>

@@ -1,4 +1,4 @@
-package com.gh0u1l5.wechatmagician.frontend
+package com.zeusro.wechatmagician.frontend
 
 import android.content.Context
 import android.os.Bundle
@@ -9,15 +9,15 @@ import android.support.v7.app.AppCompatActivity
 import android.view.Gravity
 import android.view.MenuItem
 import android.widget.TextView
-import com.gh0u1l5.wechatmagician.Global.PREFERENCE_NAME_DEVELOPER
-import com.gh0u1l5.wechatmagician.Global.PREFERENCE_NAME_SETTINGS
-import com.gh0u1l5.wechatmagician.R
-import com.gh0u1l5.wechatmagician.frontend.fragments.DonateFragment
-import com.gh0u1l5.wechatmagician.frontend.fragments.PrefFragment
-import com.gh0u1l5.wechatmagician.frontend.fragments.StatusFragment
-import com.gh0u1l5.wechatmagician.frontend.fragments.SupportFragment
-import com.gh0u1l5.wechatmagician.util.LocaleUtil
-import com.gh0u1l5.wechatmagician.util.ViewUtil.openURL
+import com.zeusro.wechatmagician.Global.PREFERENCE_NAME_DEVELOPER
+import com.zeusro.wechatmagician.Global.PREFERENCE_NAME_SETTINGS
+import com.zeusro.wechatmagician.R
+import com.zeusro.wechatmagician.frontend.fragments.DonateFragment
+import com.zeusro.wechatmagician.frontend.fragments.PrefFragment
+import com.zeusro.wechatmagician.frontend.fragments.StatusFragment
+import com.zeusro.wechatmagician.frontend.fragments.SupportFragment
+import com.zeusro.wechatmagician.util.LocaleUtil
+import com.zeusro.wechatmagician.util.ViewUtil.openURL
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*

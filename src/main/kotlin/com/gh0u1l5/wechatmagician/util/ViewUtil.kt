@@ -1,4 +1,4 @@
-package com.gh0u1l5.wechatmagician.util
+package com.zeusro.wechatmagician.util
 
 import android.content.Context
 import android.content.Intent
@@ -13,8 +13,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
 import android.widget.Toast
-import com.gh0u1l5.wechatmagician.Global
-import com.gh0u1l5.wechatmagician.spellbook.WechatPackage
+import com.zeusro.wechatmagician.C
+import com.zeusro.wechatmagician.Global
+import com.zeusro.wechatmagician.backend.WechatPackage
 import de.robv.android.xposed.XposedBridge
 import de.robv.android.xposed.XposedHelpers
 import de.robv.android.xposed.XposedHelpers.findFirstFieldByExactType
@@ -28,7 +29,7 @@ object ViewUtil {
             val child = viewGroup.getChildAt(it)
 
             val getAttr = {getter: String ->
-                if (child::class.java.methods.count{ it.name == getter } != 0) {
+                if (child.javaClass.methods.count{ it.name == getter } != 0) {
                     attrs += getter to XposedHelpers.callMethod(child, getter)
                 }
             }
@@ -39,7 +40,7 @@ object ViewUtil {
             getAttr("isClickable")
             getAttr("isLongClickable")
 
-            XposedBridge.log("$prefix[$it] => ${child::class.java}, $attrs")
+            XposedBridge.log("$prefix[$it] => ${child.javaClass}, $attrs")
             if (child is ViewGroup) {
                 dumpViewGroup("$prefix[$it]", child)
             }
@@ -50,7 +51,7 @@ object ViewUtil {
     fun searchViewGroup(viewGroup: ViewGroup, className: String): View? {
         repeat(viewGroup.childCount, {
             val child = viewGroup.getChildAt(it)
-            if (child::class.java.name == className) {
+            if (child.javaClass.name == className) {
                 return child
             }
             if (child is ViewGroup) {
@@ -117,9 +118,9 @@ object ViewUtil {
             return null
         }
 
-        val activityField = findFirstFieldByExactType(container::class.java, WechatPackage.SnsActivity)
+        val activityField = findFirstFieldByExactType(container.javaClass, WechatPackage.SnsActivity)
         val activity = activityField.get(container)
-        val listViewField = findFirstFieldByExactType(activity::class.java, ListView::class.java)
+        val listViewField = findFirstFieldByExactType(activity.javaClass, C.ListView)
         return listViewField.get(activity) as ListView
     }
 }

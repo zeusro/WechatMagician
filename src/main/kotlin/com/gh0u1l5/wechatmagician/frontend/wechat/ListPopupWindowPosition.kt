@@ -1,4 +1,4 @@
-package com.gh0u1l5.wechatmagician.frontend.wechat
+package com.zeusro.wechatmagician.frontend.wechat
 
 import android.view.View
 

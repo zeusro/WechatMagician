@@ -1,9 +1,10 @@
-package com.gh0u1l5.wechatmagician.util
+package com.zeusro.wechatmagician.util
 
 import android.graphics.Bitmap
 import android.os.Environment
-import com.gh0u1l5.wechatmagician.spellbook.WechatPackage
+import com.zeusro.wechatmagician.backend.WechatPackage
 import de.robv.android.xposed.XposedHelpers.callMethod
+import de.robv.android.xposed.XposedHelpers.getObjectField
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -11,7 +12,7 @@ import java.util.*
 object ImageUtil {
 
     // blockTable records all the thumbnail files changed by ImageUtil
-    // In WechatHook.hookImageStorage, the module hooks FileOutputStream
+    // In WechatHook.hookImgStorage, the module hooks FileOutputStream
     // to prevent anyone from overwriting these files.
     @Volatile var blockTable: Set<String> = setOf()
 
@@ -41,7 +42,7 @@ object ImageUtil {
     private fun replaceThumbMemoryCache(path: String, bitmap: Bitmap) {
         // Check if memory cache and image storage are established
         val storage = WechatPackage.ImgStorageObject ?: return
-        val cache = WechatPackage.ImgStorageCacheField.get(storage)
+        val cache = getObjectField(storage, WechatPackage.ImgStorageCacheField)
 
         // Update memory cache
         callMethod(cache, "remove", path)

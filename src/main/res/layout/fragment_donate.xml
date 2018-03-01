@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/card_background"
     android:orientation="vertical"
-    tools:context="com.gh0u1l5.wechatmagician.frontend.fragments.DonateFragment">
+    tools:context="com.zeusro.wechatmagician.frontend.fragments.DonateFragment">
 
     <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:id="@+id/donate_alipay"

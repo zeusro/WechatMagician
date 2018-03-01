@@ -5,34 +5,41 @@ buildscript {
         google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.2.0-alpha04'
+        classpath 'com.android.tools.build:gradle:3.1.0-beta1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath "org.jetbrains.kotlin:kotlin-android-extensions:$kotlin_version"
     }
 }
 
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-
 android {
     compileSdkVersion 27
     buildToolsVersion '27.0.3'
     defaultConfig {
-        applicationId "com.gh0u1l5.wechatmagician"
+        applicationId "com.zeusro.wechatmagician"
         minSdkVersion 19
         maxSdkVersion 27
         targetSdkVersion 27
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_7
-        targetCompatibility JavaVersion.VERSION_1_7
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
     lintOptions {
         checkReleaseBuilds false
     }
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
+    }
+    buildTypes {
+        release {
+            debuggable false
+            jniDebuggable false
+            renderscriptDebuggable false
+            minifyEnabled false
+            zipAlignEnabled true
+        }
     }
 }
 
@@ -50,11 +57,10 @@ dependencies {
     implementation 'com.android.support:preference-v7:27.0.2'
     implementation 'com.android.support:preference-v14:27.0.2'
     implementation 'com.android.support:support-v4:27.0.2'
-
+    implementation 'com.android.support:multidex:1.0.2'
     //noinspection GradleDependency
     compileOnly 'de.robv.android.xposed:api:53'
     compileOnly 'de.robv.android.xposed:api:53:sources'
-
     implementation 'me.leolin:ShortcutBadger:1.1.19@aar'
     implementation 'net.dongliu:apk-parser:2.4.2'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"

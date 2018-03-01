@@ -1,9 +1,9 @@
-package com.gh0u1l5.wechatmagician.frontend.widget
+package com.zeusro.wechatmagician.frontend.widget
 
 import android.content.Context
 import android.support.v7.preference.EditTextPreference
 import android.util.AttributeSet
-import com.gh0u1l5.wechatmagician.util.PasswordUtil
+import com.zeusro.wechatmagician.util.PasswordUtil
 
 class PasswordPreference : EditTextPreference {
 

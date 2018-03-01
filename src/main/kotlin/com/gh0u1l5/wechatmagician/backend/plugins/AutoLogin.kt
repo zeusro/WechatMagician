@@ -1,25 +1,36 @@
-package com.gh0u1l5.wechatmagician.backend.plugins
+package com.zeusro.wechatmagician.backend.plugins
 
-import android.app.Activity
 import android.widget.Button
-import com.gh0u1l5.wechatmagician.Global.SETTINGS_AUTO_LOGIN
-import com.gh0u1l5.wechatmagician.backend.WechatHook
-import com.gh0u1l5.wechatmagician.spellbook.interfaces.IActivityHook
+import com.zeusro.wechatmagician.C
+import com.zeusro.wechatmagician.Global.SETTINGS_AUTO_LOGIN
+import com.zeusro.wechatmagician.backend.WechatPackage
+import com.zeusro.wechatmagician.storage.Preferences
+import de.robv.android.xposed.XC_MethodHook
+import de.robv.android.xposed.XposedHelpers.findAndHookMethod
 import de.robv.android.xposed.XposedHelpers.findFirstFieldByExactType
 
-object AutoLogin : IActivityHook {
+// 自动确认扫码操作
+object AutoLogin {
 
-    private val pref = WechatHook.settings
+    private var preferences: Preferences? = null
 
-    private fun isPluginEnabled() = pref.getBoolean(SETTINGS_AUTO_LOGIN, false)
+    @JvmStatic fun init(_preferences: Preferences) {
+        preferences = _preferences
+    }
 
-    override fun onWebLoginUICreated(activity: Activity) {
-        if (!isPluginEnabled()) {
-            return
-        }
-        val clazz = activity::class.java
-        val field = findFirstFieldByExactType(clazz, Button::class.java)
-        val button = field.get(activity) as Button?
-        button?.performClick()
+    private val pkg = WechatPackage
+
+    @JvmStatic fun enableAutoLogin() {
+        findAndHookMethod(pkg.WebWXLoginUI, "onCreate", C.Bundle, object : XC_MethodHook() {
+            @Throws(Throwable::class)
+            override fun afterHookedMethod(param: MethodHookParam) {
+                if (preferences?.getBoolean(SETTINGS_AUTO_LOGIN, false) == true) {
+                    val clazz = param.thisObject.javaClass
+                    val field = findFirstFieldByExactType(clazz, C.Button)
+                    val button = field.get(param.thisObject) as Button?
+                    button?.performClick()
+                }
+            }
+        })
     }
 }

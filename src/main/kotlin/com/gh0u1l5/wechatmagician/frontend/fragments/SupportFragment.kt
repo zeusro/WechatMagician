@@ -1,4 +1,4 @@
-package com.gh0u1l5.wechatmagician.frontend.fragments
+package com.zeusro.wechatmagician.frontend.fragments
 
 import android.app.Activity.RESULT_OK
 import android.content.BroadcastReceiver
@@ -14,12 +14,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import com.gh0u1l5.wechatmagician.Global.ACTION_REQUIRE_WECHAT_PACKAGE
-import com.gh0u1l5.wechatmagician.Global.LOG_TAG
-import com.gh0u1l5.wechatmagician.Global.XPOSED_BASE_DIR
-import com.gh0u1l5.wechatmagician.Global.XPOSED_FILE_PROVIDER
-import com.gh0u1l5.wechatmagician.R
-import com.gh0u1l5.wechatmagician.util.ViewUtil.openURL
+import com.zeusro.wechatmagician.Global.ACTION_REQUIRE_WECHAT_PACKAGE
+import com.zeusro.wechatmagician.Global.LOG_TAG
+import com.zeusro.wechatmagician.Global.XPOSED_BASE_DIR
+import com.zeusro.wechatmagician.Global.XPOSED_FILE_PROVIDER
+import com.zeusro.wechatmagician.R
+import com.zeusro.wechatmagician.util.ViewUtil.openURL
 import kotlinx.android.synthetic.main.fragment_support.*
 import java.io.File
 

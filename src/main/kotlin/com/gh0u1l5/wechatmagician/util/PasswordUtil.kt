@@ -1,4 +1,4 @@
-package com.gh0u1l5.wechatmagician.util
+package com.zeusro.wechatmagician.util
 
 import android.app.AlertDialog
 import android.content.Context
@@ -8,15 +8,15 @@ import android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.Toast
-import com.gh0u1l5.wechatmagician.Global.SALT
-import com.gh0u1l5.wechatmagician.backend.storage.LocalizedStrings
-import com.gh0u1l5.wechatmagician.backend.storage.LocalizedStrings.BUTTON_CANCEL
-import com.gh0u1l5.wechatmagician.backend.storage.LocalizedStrings.BUTTON_OK
-import com.gh0u1l5.wechatmagician.backend.storage.LocalizedStrings.PROMPT_CORRECT_PASSWORD
-import com.gh0u1l5.wechatmagician.backend.storage.LocalizedStrings.PROMPT_NEW_PASSWORD
-import com.gh0u1l5.wechatmagician.backend.storage.LocalizedStrings.PROMPT_VERIFY_PASSWORD
-import com.gh0u1l5.wechatmagician.backend.storage.LocalizedStrings.PROMPT_WRONG_PASSWORD
-import com.gh0u1l5.wechatmagician.util.ViewUtil.dp2px
+import com.zeusro.wechatmagician.Global.SALT
+import com.zeusro.wechatmagician.storage.LocalizedStrings
+import com.zeusro.wechatmagician.storage.LocalizedStrings.BUTTON_CANCEL
+import com.zeusro.wechatmagician.storage.LocalizedStrings.BUTTON_OK
+import com.zeusro.wechatmagician.storage.LocalizedStrings.PROMPT_CORRECT_PASSWORD
+import com.zeusro.wechatmagician.storage.LocalizedStrings.PROMPT_NEW_PASSWORD
+import com.zeusro.wechatmagician.storage.LocalizedStrings.PROMPT_VERIFY_PASSWORD
+import com.zeusro.wechatmagician.storage.LocalizedStrings.PROMPT_WRONG_PASSWORD
+import com.zeusro.wechatmagician.util.ViewUtil.dp2px
 import java.security.MessageDigest
 
 object PasswordUtil {

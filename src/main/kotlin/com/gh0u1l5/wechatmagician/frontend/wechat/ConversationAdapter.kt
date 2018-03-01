@@ -1,4 +1,4 @@
-package com.gh0u1l5.wechatmagician.frontend.wechat
+package com.zeusro.wechatmagician.frontend.wechat
 
 import android.content.Context
 import android.graphics.Color
@@ -8,12 +8,12 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.LinearLayout
 import android.widget.TextView
-import com.gh0u1l5.wechatmagician.backend.plugins.ChatroomHider
-import com.gh0u1l5.wechatmagician.backend.storage.LocalizedStrings
-import com.gh0u1l5.wechatmagician.backend.storage.LocalizedStrings.LABEL_UNNAMED
-import com.gh0u1l5.wechatmagician.backend.storage.database.MainDatabase
-import com.gh0u1l5.wechatmagician.backend.storage.list.ChatroomHideList
-import com.gh0u1l5.wechatmagician.util.ViewUtil.dp2px
+import com.zeusro.wechatmagician.backend.WechatEvents
+import com.zeusro.wechatmagician.storage.LocalizedStrings
+import com.zeusro.wechatmagician.storage.LocalizedStrings.LABEL_UNNAMED
+import com.zeusro.wechatmagician.storage.database.MainDatabase
+import com.zeusro.wechatmagician.storage.list.ChatroomHideList
+import com.zeusro.wechatmagician.util.ViewUtil.dp2px
 import de.robv.android.xposed.XposedHelpers
 
 class ConversationAdapter(context: Context, val conversations: MutableList<ConversationAdapter.Conversation> = getConversationList()) :
@@ -28,6 +28,7 @@ class ConversationAdapter(context: Context, val conversations: MutableList<Conve
             val unreadCount: Int
     )
 
+    private val events = WechatEvents
     private val str = LocalizedStrings
 
     companion object {
@@ -97,10 +98,10 @@ class ConversationAdapter(context: Context, val conversations: MutableList<Conve
                     .format(conversation.digestUser)
                     .replace("\n", "")
             setOnClickListener { view ->
-                ChatroomHider.onChatroomHiderConversationClick(view, conversation.username)
+                events.onChatroomHiderConversationClick(view, conversation.username)
             }
             setOnLongClickListener { view ->
-                ChatroomHider.onChatroomHiderConversationLongClick(view, this@ConversationAdapter, conversation.username)
+                events.onChatroomHiderConversationLongClick(view, this@ConversationAdapter, conversation.username)
             }
         }
     }

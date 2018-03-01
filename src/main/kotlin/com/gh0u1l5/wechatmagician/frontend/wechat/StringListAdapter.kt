@@ -1,4 +1,4 @@
-package com.gh0u1l5.wechatmagician.frontend.wechat
+package com.zeusro.wechatmagician.frontend.wechat
 
 import android.content.Context
 import android.graphics.Color
@@ -10,7 +10,7 @@ import android.widget.LinearLayout
 import android.widget.LinearLayout.LayoutParams.MATCH_PARENT
 import android.widget.LinearLayout.LayoutParams.WRAP_CONTENT
 import android.widget.TextView
-import com.gh0u1l5.wechatmagician.util.ViewUtil.dp2px
+import com.zeusro.wechatmagician.util.ViewUtil.dp2px
 import de.robv.android.xposed.XposedHelpers
 
 class StringListAdapter(context: Context, strings: List<String>) :

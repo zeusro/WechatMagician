@@ -1,12 +1,13 @@
-package com.gh0u1l5.wechatmagician.util
+package com.zeusro.wechatmagician.util
 
 import android.annotation.TargetApi
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
+import android.content.SharedPreferences
 import android.os.Build
-import com.gh0u1l5.wechatmagician.Global.PREFERENCE_NAME_SETTINGS
-import com.gh0u1l5.wechatmagician.Global.SETTINGS_MODULE_LANGUAGE
-import com.gh0u1l5.wechatmagician.util.IPCUtil.getProtectedSharedPreferences
+import com.zeusro.wechatmagician.Global.PREFERENCE_NAME_SETTINGS
+import com.zeusro.wechatmagician.Global.SETTINGS_MODULE_LANGUAGE
+import com.zeusro.wechatmagician.storage.LocalizedStrings
 import java.util.*
 
 /**
@@ -15,6 +16,14 @@ import java.util.*
  */
 
 object LocaleUtil {
+
+    private fun Context.getProtectedSharedPreferences(name: String, mode: Int): SharedPreferences {
+        return if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
+            getSharedPreferences(name, mode)
+        } else {
+            createDeviceProtectedStorageContext().getSharedPreferences(name, mode)
+        }
+    }
 
     fun getLanguage(context: Context, default: String = Locale.getDefault().language): String {
         val settings = context.getProtectedSharedPreferences(PREFERENCE_NAME_SETTINGS, MODE_PRIVATE)
@@ -28,6 +37,7 @@ object LocaleUtil {
 
     fun setLocale(context: Context, language: String): Context {
         persist(context, language)
+        LocalizedStrings.language = language
 
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             updateResources(context, language)

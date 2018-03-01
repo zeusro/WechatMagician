@@ -1,7 +1,7 @@
-package com.gh0u1l5.wechatmagician.util
+package com.zeusro.wechatmagician.util
 
-import com.gh0u1l5.wechatmagician.backend.storage.cache.SnsCache
-import com.gh0u1l5.wechatmagician.spellbook.WechatPackage
+import com.zeusro.wechatmagician.backend.WechatPackage
+import com.zeusro.wechatmagician.storage.cache.SnsCache
 import de.robv.android.xposed.XposedHelpers
 import java.net.URL
 

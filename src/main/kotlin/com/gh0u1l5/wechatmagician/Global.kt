@@ -1,7 +1,9 @@
-package com.gh0u1l5.wechatmagician
+package com.zeusro.wechatmagician
 
 import android.annotation.SuppressLint
 import android.os.Build
+import de.robv.android.xposed.XposedBridge.log
+import kotlin.concurrent.thread
 
 object Global {
     const val SALT = "W3ch4tM4g1c14n"
@@ -10,15 +12,23 @@ object Global {
     const val XPOSED_PACKAGE_NAME   = "de.robv.android.xposed.installer"
     const val XPOSED_FILE_PROVIDER  = "de.robv.android.xposed.installer.fileprovider"
     const val WECHAT_PACKAGE_NAME   = "com.tencent.mm"
-    const val MAGICIAN_PACKAGE_NAME = "com.gh0u1l5.wechatmagician"
+    const val MAGICIAN_PACKAGE_NAME = "com.zeusro.wechatmagician"
 
     @SuppressLint("SdCardPath")
     private val DATA_DIR = if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) "/data/data/" else "/data/user_de/0/"
     val XPOSED_BASE_DIR = "$DATA_DIR/$XPOSED_PACKAGE_NAME/"
+    val MAGICIAN_BASE_DIR = "$DATA_DIR/$MAGICIAN_PACKAGE_NAME/"
 
     const val FOLDER_SHARED_PREFS = "shared_prefs"
 
-    const val PREFERENCE_PROVIDER_AUTHORITY   = "com.gh0u1l5.wechatmagician.preferences"
+    const val STATUS_FLAG_MSG_STORAGE = "MsgStorage"
+    const val STATUS_FLAG_IMG_STORAGE = "ImgStorage"
+    const val STATUS_FLAG_RESOURCES   = "Resources"
+    const val STATUS_FLAG_DATABASE    = "Database"
+    const val STATUS_FLAG_XML_PARSER  = "XMLParser"
+    const val STATUS_FLAG_URI_ROUTER  = "UriRouter"
+    const val STATUS_FLAG_COMMAND     = "SearchBarCommand"
+
     const val PREFERENCE_NAME_SETTINGS        = "settings"
     const val PREFERENCE_NAME_DEVELOPER       = "developer"
     const val PREFERENCE_NAME_SECRET_FRIEND   = "wechat-magician-secret-friend"
@@ -34,7 +44,6 @@ object Global {
     const val SETTINGS_SECRET_FRIEND                  = "settings_secret_friend"
     const val SETTINGS_SECRET_FRIEND_PASSWORD         = "settings_secret_friend_password"
     const val SETTINGS_SELECT_PHOTOS_LIMIT            = "settings_select_photos_limit"
-    const val SETTINGS_SNS_ADBLOCK                    = "settings_sns_adblock"
     const val SETTINGS_SNS_DELETE_COMMENT             = "settings_sns_delete_comment"
     const val SETTINGS_SNS_DELETE_MOMENT              = "settings_sns_delete_moment"
     const val SETTINGS_SNS_KEYWORD_BLACKLIST          = "settings_sns_keyword_blacklist"
@@ -52,6 +61,7 @@ object Global {
     const val DEVELOPER_TRACE_FILES         = "developer_trace_files"
     const val DEVELOPER_XML_PARSER          = "developer_xml_parser"
 
+    const val ACTION_WECHAT_STARTUP         = "$MAGICIAN_PACKAGE_NAME.ACTION_WECHAT_STARTUP"
     const val ACTION_REQUIRE_HOOK_STATUS    = "$MAGICIAN_PACKAGE_NAME.ACTION_REQUIRE_HOOK_STATUS"
     const val ACTION_REQUIRE_WECHAT_PACKAGE = "$MAGICIAN_PACKAGE_NAME.ACTION_REQUIRE_WECHAT_PACKAGE"
     const val ACTION_UPDATE_PREF            = "$MAGICIAN_PACKAGE_NAME.ACTION_UPDATE_PREF"
@@ -60,4 +70,17 @@ object Global {
     const val ITEM_ID_BUTTON_HIDE_FRIEND   = 0x510
     const val ITEM_ID_BUTTON_HIDE_CHATROOM = 0x511
     const val ITEM_ID_BUTTON_CLEAN_UNREAD  = 0x512
+
+    fun tryWithLog(func: () -> Unit) {
+        try { func() } catch (t: Throwable) { log(t) }
+    }
+
+    fun <T>tryOrNull(func: () -> T): T? =
+        try { func() } catch (t: Throwable) { log(t); null }
+
+    fun tryWithThread(func: () -> Unit): Thread {
+        return thread(start = true) { func() }.apply {
+            setUncaughtExceptionHandler { _, t -> log(t) }
+        }
+    }
 }

@@ -1,4 +1,4 @@
-package com.gh0u1l5.wechatmagician.frontend.fragments
+package com.zeusro.wechatmagician.frontend.fragments
 
 import android.app.Activity
 import android.content.BroadcastReceiver
@@ -13,14 +13,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import com.gh0u1l5.wechatmagician.Global.ACTION_REQUIRE_HOOK_STATUS
-import com.gh0u1l5.wechatmagician.Global.LOG_TAG
-import com.gh0u1l5.wechatmagician.R
-import com.gh0u1l5.wechatmagician.spellbook.Global.STATUS_FLAG_DATABASE
-import com.gh0u1l5.wechatmagician.spellbook.Global.STATUS_FLAG_MSG_STORAGE
-import com.gh0u1l5.wechatmagician.spellbook.Global.STATUS_FLAG_RESOURCES
-import com.gh0u1l5.wechatmagician.spellbook.Global.STATUS_FLAG_URI_ROUTER
-import com.gh0u1l5.wechatmagician.spellbook.Global.STATUS_FLAG_XML_PARSER
+import com.zeusro.wechatmagician.Global
+import com.zeusro.wechatmagician.Global.ACTION_REQUIRE_HOOK_STATUS
+import com.zeusro.wechatmagician.Global.STATUS_FLAG_DATABASE
+import com.zeusro.wechatmagician.Global.STATUS_FLAG_MSG_STORAGE
+import com.zeusro.wechatmagician.Global.STATUS_FLAG_RESOURCES
+import com.zeusro.wechatmagician.Global.STATUS_FLAG_URI_ROUTER
+import com.zeusro.wechatmagician.Global.STATUS_FLAG_XML_PARSER
+import com.zeusro.wechatmagician.R
 import kotlinx.android.synthetic.main.fragment_status.*
 
 class StatusFragment : Fragment() {
@@ -71,17 +71,15 @@ class StatusFragment : Fragment() {
 
     // Check backend.WechatHook for actual implementation
     private fun isModuleLoaded(): Boolean {
-        // In some frameworks, short methods (less than two Dalvik instructions)
-        // can not be hooked stably. This log just makes the method longer to hook.
-        Log.v(LOG_TAG, "$javaClass.isModuleLoaded() invoked.")
+        // this log is useless, just make this method longer to hook
+        // (in some framework, short method(assembly code less than two instructions) can not be hooked stably)
+        Log.v(Global.LOG_TAG, "isModuleLoaded, " + javaClass)
         return false
     }
 
     // Check backend.WechatHook for actual implementation
     private fun getXposedVersion(): Int {
-        // In some frameworks, short methods (less than two Dalvik instructions)
-        // can not be hooked stably. This log just makes the method longer to hook.
-        Log.v(LOG_TAG, "$javaClass.getXposedVersion() invoked. ")
+        Log.v(Global.LOG_TAG, "getXposedVersion: " + javaClass)
         return 0
     }
 
